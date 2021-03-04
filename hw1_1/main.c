@@ -34,20 +34,15 @@ int main(void)
     				convertLEDstate(i);
     				if(pressUPcount > 0){break;}
     		}
-    			if(pressUPcount > 0){blinkState = 0;break;}
+    			if(pressUPcount > 0){blinkState = 0;pressUPcount=0;break;}
     		}
-    		/*
-    		pressUPcount += delayCheckPress(8000);
-    		convertLEDstate(2);
-    		pressUPcount += delayCheckPress(8000);
-    		convertLEDstate(2);
-    		*/
     	}
 
     	if(keepLEDonState){
     		int i = 1;
     		for(;i<3;i++){convertLEDstate(i);}
     		keepLEDonState = 0;
+    		pressUPcount = 0;
     	}
 
     	pressUPcount = delayCheckPress(80000);
@@ -55,8 +50,6 @@ int main(void)
     	case 1:blinkState=1;keepLEDonState=0;break;
     	case 2:blinkState=0;keepLEDonState=1;break;
     	}
-    	//blinkState = pressUPcount ;
-    	//__delay_cycles(100);//·ÀÒ»²¨¶¶¶¯
     }
 	return 0;
 }

@@ -36,16 +36,9 @@ int main(void)
     		}
     			if(pressUPcount > 0){blinkState = 0;break;}
     		}
-    		/*
-    		pressUPcount += delayCheckPress(8000);
-    		convertLEDstate(2);
-    		pressUPcount += delayCheckPress(8000);
-    		convertLEDstate(2);
-    		*/
     	}
     	pressUPcount = delayCheckPress(80000);
     	blinkState = pressUPcount ;
-    	//__delay_cycles(100);//∑¿“ª≤®∂∂∂Ø
     }
 	return 0;
 }
