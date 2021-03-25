@@ -1,4 +1,5 @@
 #include <msp430.h> 
+
 #define KEY_INPUT (P1IN & BIT3)//KEY_INPUT未按下是1，按下是0
 /*
  * main.c

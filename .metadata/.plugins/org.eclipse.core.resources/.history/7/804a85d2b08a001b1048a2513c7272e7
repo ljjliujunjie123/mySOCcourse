@@ -1,0 +1,35 @@
+/*
+ * main.c
+ */
+#include <msp430f6638.h>
+int flag = 0;
+
+void main(void)
+{
+  WDTCTL = WDTPW + WDTHOLD;                 //关闭看门狗
+  P4DIR |= BIT5;                            //设置P4.5口方向为输出
+  P4DIR &= ~BIT0;
+  P4REN |= BIT0;                            //使能P4.0上拉电阻
+  P4OUT |= BIT0;                            //P4.0口置高电平
+  P4IES |= BIT0;                            //中断沿设置（下降沿触发）
+  P4IFG &= ~BIT0;                           //清P4.0中断标志
+  P4IE |= BIT0;                             //使能P4.0口中断
+
+  __bis_SR_register(LPM4_bits + GIE);       //进入低功耗模式4 开中断
+
+  //__no_operation();                         //空操作
+
+  while(1){
+	  P4OUT ^= BIT5;
+	  __delay_cycles(3276000);
+	  if(flag)break;
+  }
+}
+
+// P4中断函数
+#pragma vector=PORT4_VECTOR
+__interrupt void Port_4(void)
+{
+	flag ^= 1;
+	P4IFG &= ~BIT0;                          //清P4.0中断标志位
+}

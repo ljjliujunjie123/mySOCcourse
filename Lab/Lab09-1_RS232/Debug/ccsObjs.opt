@@ -1,0 +1,1 @@
+"./dr_tft.obj" "./dr_tft2.obj" "./main.obj" "../lnk_msp430f6638.cmd" -llibc.a 

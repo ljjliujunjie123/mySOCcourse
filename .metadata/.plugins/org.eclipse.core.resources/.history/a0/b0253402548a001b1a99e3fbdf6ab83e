@@ -1,0 +1,13 @@
+#include <msp430.h> 
+#include <msp430f6638.h>
+#include <stdio.h>
+#include "dr_lcdseg.h"
+#include <stdint.h>
+/*
+ * main.c
+ */
+int main(void) {
+    WDTCTL = WDTPW | WDTHOLD;	// Stop watchdog timer
+	
+	return 0;
+}
